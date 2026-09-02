@@ -1,7 +1,7 @@
 name: Auto Job Apply
 on:
   schedule:
-    - cron: '44 9 * * *'
+    - cron: '57 9 * * *'
   workflow_dispatch:
 jobs:
   job-search:
