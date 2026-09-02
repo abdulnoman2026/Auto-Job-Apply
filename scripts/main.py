@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import smtplib
+import requests
 from email.mime.text import MIMEText
 
 adzuna_key = os.environ.get('ADZUNA_API_KEY')
@@ -8,9 +9,6 @@ gmail_pass = os.environ.get('GMAIL_PASSWORD')
 whatsapp = os.environ.get('WHATSAPP_NUMBER')
 
 print("Job automation started!")
-print(f"API Key: {'OK' if adzuna_key else 'MISSING'}")
-print(f"Gmail: {'OK' if gmail_pass else 'MISSING'}")
-print(f"WhatsApp: {'OK' if whatsapp else 'MISSING'}")
 
 # Send email
 try:
@@ -26,5 +24,18 @@ try:
     print("✅ Email sent!")
 except Exception as e:
     print(f"❌ Email failed: {e}")
+
+# Send WhatsApp message
+try:
+    url = "https://api.callmebot.com/whatsapp.php"
+    params = {
+        "phone": whatsapp,
+        "text": "Job automation system is running! 🎉",
+        "apikey": "3542935"
+    }
+    response = requests.get(url, params=params)
+    print(f"✅ WhatsApp sent! Status: {response.status_code}")
+except Exception as e:
+    print(f"❌ WhatsApp failed: {e}")
 
 print("Job search completed!")
