@@ -1,4 +1,3 @@
-.github/workflows/main.yml
 name: Auto Job Apply
 
 on:
